@@ -36,25 +36,27 @@
 
 #define MATRIX_TYPE 0         // тип матрицы: 0 - зигзаг, 1 - параллельная
 #define CONNECTION_ANGLE 0    // угол подключения: 0 - левый нижний, 1 - левый верхний, 2 - правый верхний, 3 - правый нижний
-#define STRIP_DIRECTION 0     // направление ленты из угла: 0 - вправо, 1 - вверх, 2 - влево, 3 - вниз
+#define STRIP_DIRECTION 1     // направление ленты из угла: 0 - вправо, 1 - вверх, 2 - влево, 3 - вниз
 // при неправильной настройке матрицы вы получите предупреждение "Wrong matrix parameters! Set to default"
 // шпаргалка по настройке матрицы здесь! https://alexgyver.ru/matrix_guide/
 
 // --------- ESP --------
-#define ESP_MODE 1
+int r = micros()%2;
+#define ESP_MODE r
 // 0 - точка доступа
 // 1 - локальный
-byte IP_AP[] = {192, 168, 4, 66};   // статический IP точки доступа (менять только последнюю цифру)
-byte IP_STA[] = {192, 168, 1, 66};  // статический IP локальный (менять только последнюю цифру)
+
+byte IP_AP[] = {192, 168, 4, 4};   // статический IP точки доступа (менять только последнюю цифру)
+byte IP_STA[] = {192, 168, 1, 4};  // статический IP локальный (менять только последнюю цифру)
 
 // ----- AP (точка доступа) -------
-#define AP_SSID "GyverLamp"
-#define AP_PASS "12345678"
+#define AP_SSID "PaprikaLamp"
+#define AP_PASS "23071993"
 #define AP_PORT 8888
 
 // -------- Менеджер WiFi ---------
-#define AC_SSID "AutoConnectAP"
-#define AC_PASS "12345678"
+#define AC_SSID "PaprikaConnect"
+#define AC_PASS "23071993"
 
 // ============= ДЛЯ РАЗРАБОТЧИКОВ =============
 #define LED_PIN 2             // пин ленты
@@ -212,7 +214,7 @@ void setup() {
 
   timeClient.begin();
   memset(matrixValue, 0, sizeof(matrixValue));
-
+  
   randomSeed(micros());
 }
 
